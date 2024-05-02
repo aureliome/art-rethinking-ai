@@ -1,0 +1,23 @@
+type Painting = {
+  id: string;
+  title: string;
+  url: string;
+  artistName: string;
+  artistUrl: string;
+  artistId: string;
+  image: string;
+  width: number;
+  height: number;
+  completitionYear: number | null;
+  dictionaries: string[];
+  location: string;
+  genres: string[];
+  styles: string[];
+  media: string[];
+  galleries: string[];
+  tags: string[];
+  sizeX: number | null;
+  sizeY: number | null;
+  diameter: number | null;
+  description: string;
+};

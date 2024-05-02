@@ -1,0 +1,42 @@
+{
+  "id": "57727122edc2cb3880c05a52",
+  "title": "Café Terrace at Night (Place du Forum, Arles)",
+  "url": "cafe-terrace-place-du-forum-arles-1888",
+  "artistUrl": "vincent-van-gogh",
+  "artistName": "van Gogh Vincent ",
+  "artistId": "57726d82edc2cb3880b486a0",
+  "completitionYear": 1888,
+  "dictionaries": [
+    "57726b52edc2cb3880ad77e0",
+    "57726b4eedc2cb3880ad6e30",
+    "57726bcdedc2cb3880ae733e",
+    "57726b4eedc2cb3880ad6f70"
+  ],
+  "location": "Arles, Bouches-du-RhôneFrance",
+  "period": null,
+  "serie": null,
+  "genres": ["cityscape"],
+  "styles": ["Post-Impressionism"],
+  "media": ["oil", "canvas"],
+  "sizeX": 65.5,
+  "sizeY": 81,
+  "diameter": null,
+  "galleries": ["Kröller-Müller Museum, Otterlo, Netherlands"],
+  "tags": [
+    "streets-and-squares",
+    "taverns-and-inns",
+    "twilight-and-night",
+    "Arles",
+    "cafes-and-restaurants",
+    "Cobblestone",
+    "Town",
+    "Street",
+    "Neighbourhood",
+    "Infrastructure",
+    "Road"
+  ],
+  "description": "",
+  "width": 473,
+  "image": "https://uploads2.wikiart.org/images/vincent-van-gogh/cafe-terrace-place-du-forum-arles-1888(1).jpg!Large.jpg",
+  "height": 600
+}

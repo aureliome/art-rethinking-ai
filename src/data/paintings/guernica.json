@@ -1,0 +1,36 @@
+{
+  "id": "5864c292edc2c98d6c50bd1e",
+  "title": "Guernica",
+  "url": "guernica-1937",
+  "artistUrl": "pablo-picasso",
+  "artistName": "Picasso Pablo",
+  "artistId": "57726d84edc2cb3880b48c4d",
+  "completitionYear": 1937,
+  "dictionaries": [
+    "57726b51edc2cb3880ad7538",
+    "57726bcdedc2cb3880ae733e",
+    "57726b4eedc2cb3880ad6f70",
+    "57726b4dedc2cb3880ad6de8",
+    "57726b53edc2cb3880ad78b0"
+  ],
+  "location": "",
+  "period": {
+    "id": "57726d84edc2cb3880b48c5b",
+    "title": "Neoclassicist & Surrealist Period"
+  },
+  "serie": null,
+  "genres": ["allegorical painting"],
+  "styles": ["Cubism", "Surrealism"],
+  "media": ["oil", "canvas"],
+  "sizeX": 776,
+  "sizeY": 349,
+  "diameter": null,
+  "galleries": [
+    "Museo Nacional Centro de Arte Reina Sofía (MNCARS), Madrid, Spain"
+  ],
+  "tags": ["monochrome"],
+  "description": "[i]Guernica[/i] was Picasso's response to the bombing of the Basque town of the same name on April 26, 1937 during the Spanish Civil War. Picasso was commissioned by the republican government of Spain to produce a mural painting for the Spanish Pavilion at the World Fair in Paris. Painted in one month - from May to June 1937 - [i]Guernica[/i] became the centerpiece of the Spanish pavilion and a sensation at the Fair, but it was consequently banned from exhibition in Spain until military dictator Franco fell from power in 1975. \n\nPicasso had studied dramatic photographs of bombing published in various periodicals. Despite that, neither the studies nor the finished picture contain a single allusion to a specific event, constituting instead a generic plea against the barbarity and terror of war. The scene depicted in [i]Guernica[/i] is a room full of moving, screaming and dying adults, children and animals. Most of the individual images are also symbols: a bull (virility of man), a woman with a dead child (pieta image), a horse (innocent people), a dead soldier with stigmata (martyrdom), a blazing light (bombs), a prison cell (torture), a dove (peace).\n\n[i]Guernica[/i] is painted in monochrome, using a palette of grey, black, and white. Perhaps Picasso wanted to give his painting a veneer of photojournalistic realism; or maybe the bleak, night-time colour scheme complemented the jagged shapes and terror-stricken faces, and added to the sense of panic and terror. In any event, the lack of colour gives added impact to the flattened Cubist forms, and adds to the drama of the work by allowing Picasso to highlight key faces and objects in white. This painting is undoubtedly modern art's most famous response to war, and an international symbol of genocide committed during wartime.",
+  "width": 750,
+  "image": "https://uploads0.wikiart.org/00139/images/pablo-picasso/guernica-by-pablo-picasso.jpg!Large.jpg",
+  "height": 339
+}

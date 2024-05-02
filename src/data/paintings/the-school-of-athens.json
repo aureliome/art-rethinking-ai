@@ -1,0 +1,29 @@
+{
+  "id": "577271f9edc2cb3880c37dcd",
+  "title": "The School of Athens",
+  "url": "school-of-athens-detail-from-right-hand-side-showing-diogenes-on-the-steps-and-euclid-1511",
+  "artistUrl": "raphael",
+  "artistName": "Raphael",
+  "artistId": "57726d83edc2cb3880b487fe",
+  "completitionYear": 1511,
+  "dictionaries": [
+    "57726b51edc2cb3880ad75e0",
+    "57726b4eedc2cb3880ad6e68",
+    "57726bcdedc2cb3880ae72b6"
+  ],
+  "location": "",
+  "period": null,
+  "serie": null,
+  "genres": ["history painting"],
+  "styles": ["High Renaissance"],
+  "media": ["fresco"],
+  "sizeX": 770,
+  "sizeY": 500,
+  "diameter": null,
+  "galleries": ["Vatican Museums, Vatican"],
+  "tags": ["Holy places"],
+  "description": "The School of Athens fresco, which is one of Raphael’s most famous works, was completed to decorate the Stanza della Segnatura commission by the Pope. The Stanza was the first set of rooms to be decorated, and this painting was the second in the set of paintings that adorn the walls. Although it was created for a grand room in the Vatican, nearly every one of the figures in the painting can be identified as a Greek philosopher, rather than a religious character. Raphael included the likeness of Michelangelo himself in the painting, as the philosopher Heraclitus. ",
+  "width": 750,
+  "image": "https://uploads6.wikiart.org/00475/images/raphael/1-xvkpn0qm3eiqpzivkggfea.jpg!Large.jpg",
+  "height": 534
+}
