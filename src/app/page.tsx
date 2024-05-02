@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import paintings from "@/data/paintings/paintings";
-import style from "./page.module.css";
+import PaintingItem from "./components/PaintingItem";
 
 export default function Home() {
   const [selectedPainting, setSelectedPaiting] = useState<null | Painting>(
     null
   );
 
-  function selectPainting(index: number) {
-    setSelectedPaiting(paintings[index]);
+  function selectPainting(painting: Painting) {
+    setSelectedPaiting(painting);
   }
 
   return (
@@ -23,24 +23,14 @@ export default function Home() {
       </p>
 
       {selectedPainting ? (
-        <p>{selectedPainting.title}</p>
+        <PaintingItem painting={selectedPainting} />
       ) : (
-        paintings.map((painting, index) => (
-          <div
-            className={style.painting}
-            onClick={() => selectPainting(index)}
+        paintings.map((painting) => (
+          <PaintingItem
             key={painting.id}
-          >
-            <img src={painting.image} alt={painting.title} height="100" />
-            <div>
-              <p>
-                <strong>{painting.title}</strong>
-              </p>
-              <p>
-                <i>{painting.artistName}</i>
-              </p>
-            </div>
-          </div>
+            painting={painting}
+            onSelectPainting={selectPainting}
+          />
         ))
       )}
     </main>
