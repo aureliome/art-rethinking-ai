@@ -1,0 +1,11 @@
+.painting {
+  border: 1px solid #000000;
+  display: flex;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.painting:hover {
+  cursor: pointer;
+  background-color: paleturquoise;
+}
