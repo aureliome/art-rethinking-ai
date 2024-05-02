@@ -9,6 +9,9 @@
     "lint": "next lint",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "*/**/*.{js,jsx,ts,tsx}": "npm run lint --fix"
+  },
   "dependencies": {
     "next": "14.2.3",
     "react": "^18",
@@ -23,6 +26,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "typescript": "^5"
   }
 }
