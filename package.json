@@ -10,7 +10,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*/**/*.{js,jsx,ts,tsx}": "npm run lint --fix"
+    "*/**/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
     "next": "14.2.3",
