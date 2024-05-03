@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import paintings from "@/data/paintings/paintings";
-import {
-  getDescriptionFromAnImage,
-  generateImageFromPrompt,
-} from "@/data/openai";
 import PaintingItem from "./components/PaintingItem";
+import TaskGetImageDescription from "./components/TaskGetImageDescription";
 
 export default function Home() {
+  const [step, setStep] = useState<number>(0);
   const [selectedPainting, setSelectedPaiting] = useState<null | Painting>(
     null
   );
@@ -16,23 +14,8 @@ export default function Home() {
 
   function selectPainting(painting: Painting) {
     setSelectedPaiting(painting);
+    setStep(1);
   }
-
-  useEffect(() => {
-    const fetchImageDescription = async (imageUrl: string) => {
-      const data = await getDescriptionFromAnImage({
-        imageUrl,
-      });
-      const json = await data.json();
-      console.log(json);
-      setImageDescription(json);
-    };
-
-    console.log("useEffect - selectedPaiting", selectedPainting);
-    if (selectedPainting) {
-      fetchImageDescription(selectedPainting.image);
-    }
-  }, [selectedPainting]);
 
   return (
     <main>
@@ -55,7 +38,9 @@ export default function Home() {
         ))
       )}
 
-      {imageDescription && <p>{JSON.stringify(imageDescription)}</p>}
+      {step > 0 && selectedPainting && (
+        <TaskGetImageDescription imageUrl={selectedPainting.image} />
+      )}
     </main>
   );
 }

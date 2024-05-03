@@ -1,12 +1,12 @@
 const ENDPOINT = "https://api.openai.com/v1";
 
-enum MODELS {
+export enum OPENAI_MODEL {
   GPT_4_TURBO = "gpt-4-turbo",
   DALL_E_2 = "dall-e-2",
   DALL_E_3 = "dall-e-3",
 }
 
-enum DALL_E_SIZES {
+enum OPENAI_DALL_E_SIZES {
   "SQUARE" = "1024x1024",
   "VERTICAL" = "1024x1792",
   "HORIZONTAL" = "1792x1024",
@@ -17,44 +17,13 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-const getDescriptionFromAnImage = ({
-  imageUrl,
-  imageLevelDetail = "low",
-}: {
-  imageUrl: string;
-  imageLevelDetail?: "low" | "high";
-}) => {
-  return fetch(`${ENDPOINT}/chat/completions`, {
+// TODO: replace "Record<string, unknown>" with a type
+export const openaiFetcher = ([url, body]: [string, Record<string, unknown>]) =>
+  fetch(`${ENDPOINT}${url}`, {
     method: "POST",
     headers,
-    body: JSON.stringify({
-      model: MODELS.GPT_4_TURBO,
-      messages: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "text",
-              text: "Provide a detailed description of this image listing all objects and colors included in the image",
-            },
-            {
-              type: "text",
-              text: "Don't mention the artist and the name of the artwork. Don't use formatting (e.g. **Sky**) and new lines (\n) in the response.",
-            },
-            {
-              type: "image_url",
-              image_url: {
-                url: imageUrl,
-                detail: imageLevelDetail,
-              },
-            },
-          ],
-        },
-      ],
-      max_tokens: 300,
-    }),
-  });
-};
+    body: JSON.stringify(body),
+  }).then((res) => res.json());
 
 const generateImageFromPrompt = ({
   description,
@@ -89,12 +58,10 @@ const generateImageFromPrompt = ({
     method: "POST",
     headers,
     body: JSON.stringify({
-      model: MODELS.DALL_E_3,
+      model: OPENAI_MODEL.DALL_E_3,
       prompt,
       n: 1,
-      size: DALL_E_SIZES[size],
+      size: OPENAI_DALL_E_SIZES[size],
     }),
   });
 };
-
-export { getDescriptionFromAnImage, generateImageFromPrompt };
