@@ -4,6 +4,7 @@ import { useState } from "react";
 import paintings from "@/data/paintings/paintings";
 import PaintingItem from "./components/PaintingItem";
 import TaskGetImageDescription from "./components/TaskGetImageDescription";
+import TaskGenerateImage from "./components/TaskGenerateImage";
 
 export default function Home() {
   const [step, setStep] = useState<number>(0);
@@ -11,6 +12,7 @@ export default function Home() {
     null
   );
   const [imageDescription, setImageDescription] = useState<null | any>(null);
+  const [newImageUrl, setNewImageUrl] = useState<null | any>(null);
 
   function goToStep1(painting: Painting) {
     setSelectedPaiting(painting);
@@ -20,6 +22,11 @@ export default function Home() {
   function goToStep2(imageDescription: string) {
     setImageDescription(imageDescription);
     setStep(2);
+  }
+
+  function end(newImageUrl: string) {
+    setNewImageUrl(newImageUrl);
+    setStep(3);
   }
 
   return (
@@ -50,7 +57,13 @@ export default function Home() {
         />
       )}
 
-      {step > 1 && imageDescription && <p>STEP 2</p>}
+      {step > 1 && selectedPainting && imageDescription && (
+        <TaskGenerateImage
+          originalImage={selectedPainting}
+          originalImageDescription={imageDescription}
+          onSuccess={end}
+        />
+      )}
     </main>
   );
 }

@@ -84,19 +84,23 @@ export function useGetImageDescription({
   return { data, isLoading, error, mutate };
 }
 
-const generateImageFromPrompt = ({
-  description,
+export function useGenerateImage({
+  imageUrl,
+  imageDescription,
   genres,
   styles,
   media,
   size,
+  onSuccess,
 }: {
-  description: string;
+  imageUrl: string;
+  imageDescription: string;
   genres: string[];
   styles: string[];
   media: string[];
   size: "SQUARE" | "HORIZONTAL" | "VERTICAL";
-}) => {
+  onSuccess: Function;
+}) {
   let prompt = `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS. `;
   if (genres.length || styles.length || media.length) {
     prompt += `Create a painting `;
@@ -111,16 +115,24 @@ const generateImageFromPrompt = ({
     }
     prompt = prompt.slice(0, -2) + ". ";
   }
-  prompt += `Its description is: "${description}".`;
+  prompt += `Its description is: "${imageDescription}".`;
 
-  return fetch(`${ENDPOINT}/images/generations`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({
-      model: OPENAI_MODEL.DALL_E_3,
-      prompt,
-      n: 1,
-      size: OPENAI_DALL_E_SIZES[size],
-    }),
-  });
-};
+  const { data, error, isLoading, mutate } = useSWR(
+    ["/images/generations", imageUrl],
+    ([url, _imageUrl]: [string, string]) =>
+      openaiFetcher(url, {
+        model: OPENAI_MODEL.DALL_E_3,
+        prompt,
+        n: 1,
+        size: OPENAI_DALL_E_SIZES[size],
+      }),
+    {
+      ...swrOptions,
+      onSuccess: (data, key, config) => {
+        onSuccess(data.data[0].url);
+      },
+    }
+  );
+
+  return { data, isLoading, error, mutate };
+}
