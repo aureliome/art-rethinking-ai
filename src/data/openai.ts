@@ -1,3 +1,5 @@
+import useSWR from "swr";
+
 const ENDPOINT = "https://api.openai.com/v1";
 
 export enum OPENAI_MODEL {
@@ -18,12 +20,71 @@ const headers = {
 };
 
 // TODO: replace "Record<string, unknown>" with a type
-export const openaiFetcher = ([url, body]: [string, Record<string, unknown>]) =>
+const openaiFetcher = ([url, body]: [string, Record<string, unknown>]) =>
   fetch(`${ENDPOINT}${url}`, {
     method: "POST",
     headers,
     body: JSON.stringify(body),
   }).then((res) => res.json());
+
+const swrOptions = {
+  revalidateOnFocus: false,
+  // revalidateOnMount: false,
+  revalidateOnReconnect: false,
+  refreshWhenOffline: false,
+  refreshWhenHidden: false,
+  refreshInterval: 0,
+};
+
+export function useGetImageDescription({
+  imageUrl,
+  onSuccess,
+}: {
+  imageUrl: string;
+  onSuccess: Function;
+}) {
+  const { data, error, isLoading, mutate } = useSWR(
+    [
+      "/chat/completions",
+      {
+        model: OPENAI_MODEL.GPT_4_TURBO,
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: "Provide a detailed description of this image listing all objects and colors included in the image",
+              },
+              {
+                type: "text",
+                text: "Don't mention the artist and the name of the artwork. Don't use formatting (e.g. **Sky**) and new lines (\n) in the response.",
+              },
+              {
+                type: "image_url",
+                image_url: {
+                  url: imageUrl,
+                  // TODO: make image detail customizable
+                  detail: "low",
+                },
+              },
+            ],
+          },
+        ],
+        max_tokens: 300,
+      },
+    ],
+    openaiFetcher,
+    {
+      ...swrOptions,
+      onSuccess: (data, key, config) => {
+        onSuccess(data.choices[0].message.content);
+      },
+    }
+  );
+
+  return { data, isLoading, error, mutate };
+}
 
 const generateImageFromPrompt = ({
   description,

@@ -12,9 +12,14 @@ export default function Home() {
   );
   const [imageDescription, setImageDescription] = useState<null | any>(null);
 
-  function selectPainting(painting: Painting) {
+  function goToStep1(painting: Painting) {
     setSelectedPaiting(painting);
     setStep(1);
+  }
+
+  function goToStep2(imageDescription: string) {
+    setImageDescription(imageDescription);
+    setStep(2);
   }
 
   return (
@@ -33,14 +38,19 @@ export default function Home() {
           <PaintingItem
             key={painting.id}
             painting={painting}
-            onSelectPainting={selectPainting}
+            onSelectPainting={goToStep1}
           />
         ))
       )}
 
       {step > 0 && selectedPainting && (
-        <TaskGetImageDescription imageUrl={selectedPainting.image} />
+        <TaskGetImageDescription
+          imageUrl={selectedPainting.image}
+          onSuccess={goToStep2}
+        />
       )}
+
+      {step > 1 && imageDescription && <p>STEP 2</p>}
     </main>
   );
 }
