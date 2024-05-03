@@ -20,7 +20,7 @@ const headers = {
 };
 
 // TODO: replace "Record<string, unknown>" with a type
-const openaiFetcher = ([url, body]: [string, Record<string, unknown>]) =>
+const openaiFetcher = (url: string, body: Record<string, unknown>) =>
   fetch(`${ENDPOINT}${url}`, {
     method: "POST",
     headers,
@@ -44,9 +44,9 @@ export function useGetImageDescription({
   onSuccess: Function;
 }) {
   const { data, error, isLoading, mutate } = useSWR(
-    [
-      "/chat/completions",
-      {
+    ["/chat/completions", imageUrl],
+    ([url, imageUrl]: [string, string]) =>
+      openaiFetcher(url, {
         model: OPENAI_MODEL.GPT_4_TURBO,
         messages: [
           {
@@ -72,9 +72,7 @@ export function useGetImageDescription({
           },
         ],
         max_tokens: 300,
-      },
-    ],
-    openaiFetcher,
+      }),
     {
       ...swrOptions,
       onSuccess: (data, key, config) => {
