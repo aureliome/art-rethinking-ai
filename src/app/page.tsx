@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import TaskGetImageDescription from "./components/TaskGetImageDescription";
-import TaskGenerateImage from "./components/TaskGenerateImage";
 import Step1SelectPainting from "./components/steps/Step1SelectPainting";
 import Step2SelectParameters from "./components/steps/Step2SetParameters";
 import Step3GetImageDescription from "./components/steps/Step3GetImageDescription";
 import Step4GenerateImage from "./components/steps/Step4GenerateImage";
 import Step5ShowResult from "./components/steps/Step5ShowResult";
+import Introduction from "./components/Introduction";
 
 export default function Home() {
   const [step, setStep] = useState<number>(1);
@@ -46,6 +45,7 @@ export default function Home() {
   return (
     <main>
       <h1>Art Rethinking AI</h1>
+      <Introduction />
 
       {step === 1 && <Step1SelectPainting onSuccess={goToStep2} />}
       {step === 2 && <Step2SelectParameters onSuccess={goToStep3} />}
