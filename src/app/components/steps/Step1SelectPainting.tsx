@@ -1,5 +1,6 @@
 import paintings from "@/data/paintings/paintings";
 import PaintingItem from "@/app/components/PaintingItem";
+import Title from "@/app/components/atoms/Title";
 import style from "./Step1SelectPainting.module.css";
 
 export default function Step1SelectPainting({
@@ -9,11 +10,9 @@ export default function Step1SelectPainting({
 }) {
   return (
     <div>
-      <p>
-        <strong>
-          Click on one of the following paintings you want to <i>rethink</i>
-        </strong>
-      </p>
+      <Title>
+        Click on one of the following paintings you want to <i>rethink</i>
+      </Title>
 
       <div className={style.masonry}>
         {paintings.map((painting) => (

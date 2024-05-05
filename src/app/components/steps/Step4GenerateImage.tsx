@@ -1,5 +1,7 @@
-import { useGenerateImage } from "@/data/openai";
 import { useState } from "react";
+import { useGenerateImage } from "@/data/openai";
+import Title from "@/app/components/atoms/Title";
+import StepDetail from "../molecules/StepDetail";
 
 export default function Step4GenerateImage({
   paiting,
@@ -36,7 +38,7 @@ export default function Step4GenerateImage({
 
   return (
     <div>
-      <p>Generate a new image {isLoading && <span>LOADING...</span>}</p>
+      <Title>Generate a new image {isLoading && <span>LOADING...</span>}</Title>
 
       {error && (
         <div>
@@ -52,16 +54,10 @@ export default function Step4GenerateImage({
       )}
 
       {data && newImageUrl && (
-        <div>
-          <div>
-            <h3>REQUEST</h3>
-            <p>{request}</p>
-          </div>
-          <div>
-            <h3>RESPONSE</h3>
-            <img src={newImageUrl} width="100" />
-          </div>
-        </div>
+        <StepDetail
+          request={<p>{request}</p>}
+          response={<img className="responsive-img" src={newImageUrl} />}
+        />
       )}
     </div>
   );

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useGetImageDescription } from "@/data/openai";
+import Title from "@/app/components/atoms/Title";
+import StepDetail from "../molecules/StepDetail";
 
 export default function Step3GetImageDescription({
   imageUrl,
@@ -22,7 +24,9 @@ export default function Step3GetImageDescription({
 
   return (
     <div>
-      <p>Get description of the image {isLoading && <span>LOADING...</span>}</p>
+      <Title>
+        Get description of the image {isLoading && <span>LOADING...</span>}
+      </Title>
 
       {error && (
         <div>
@@ -38,17 +42,15 @@ export default function Step3GetImageDescription({
       )}
 
       {data && request && imageDescription && (
-        <div>
-          <div>
-            <h3>REQUEST</h3>
-            <p>{request}</p>
-            <img src={imageUrl} width="100" />
-          </div>
-          <div>
-            <h3>RESPONSE</h3>
-            <p>{imageDescription}</p>
-          </div>
-        </div>
+        <StepDetail
+          request={
+            <div>
+              <p>{request}</p>
+              <img className="responsive-img" src={imageUrl} />
+            </div>
+          }
+          response={<p>{imageDescription}</p>}
+        />
       )}
     </div>
   );
