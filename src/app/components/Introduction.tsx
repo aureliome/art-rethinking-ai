@@ -1,6 +1,6 @@
 export default function Introduction() {
   return (
-    <div>
+    <div className="row">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, aliquam
       voluptas molestiae laudantium labore corporis quam itaque omnis sequi fuga
       nisi provident deleniti non in ad quo dolores, ratione natus? Quia

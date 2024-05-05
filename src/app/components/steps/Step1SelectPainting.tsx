@@ -9,9 +9,10 @@ export default function Step1SelectPainting({
 }) {
   return (
     <div>
-      <h5>Step 1: select a painting</h5>
       <p>
-        Click on one of the following paintings you want to <i>rethink</i>
+        <strong>
+          Click on one of the following paintings you want to <i>rethink</i>
+        </strong>
       </p>
 
       <div className={style.masonry}>

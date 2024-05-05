@@ -21,7 +21,9 @@ export default function PaintingItem({
           <strong>{painting.title}</strong>
         </p>
         <p>
-          <i>{painting.artistName}</i>
+          <i>
+            {painting.artistName}, {painting.completitionYear}
+          </i>
         </p>
       </div>
     </div>

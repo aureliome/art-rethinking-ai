@@ -48,7 +48,13 @@ export default function Home() {
       <Introduction />
 
       {step === 1 && <Step1SelectPainting onSuccess={goToStep2} />}
-      {step === 2 && <Step2SelectParameters onSuccess={goToStep3} />}
+      {step === 2 && selectedPainting && (
+        <Step2SelectParameters
+          painting={selectedPainting}
+          onSuccess={goToStep3}
+          onGoBack={restart}
+        />
+      )}
       {step >= 3 && selectedPainting && (
         <Step3GetImageDescription
           imageUrl={selectedPainting.image}
