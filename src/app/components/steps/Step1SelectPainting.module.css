@@ -1,0 +1,19 @@
+.masonry {
+  column-count: 2;
+  column-gap: 1em;
+}
+
+.masonry:hover {
+  cursor: pointer;
+}
+
+.masonry > * {
+  display: inline-block;
+}
+
+@media screen and (min-width: 992px) {
+  .masonry {
+    column-count: 3;
+    column-gap: 1.5em;
+  }
+}

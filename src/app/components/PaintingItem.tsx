@@ -9,12 +9,14 @@ export default function PaintingItem({
 }) {
   return (
     <div
-      className={style.painting}
+      className="card hoverable"
       onClick={() => (onSelectPainting ? onSelectPainting(painting) : null)}
       key={painting.id}
     >
-      <img src={painting.image} alt={painting.title} height="100" />
-      <div>
+      <div className="card-image">
+        <img src={painting.image} alt={painting.title} />
+      </div>
+      <div className="card-content">
         <p>
           <strong>{painting.title}</strong>
         </p>
