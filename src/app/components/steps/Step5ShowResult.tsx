@@ -20,6 +20,8 @@ export default function Step5ShowResult({
           <Title>New Image</Title>
           <img className="responsive-img" src={newImageUrl} />
         </div>
+      </div>
+      <div className="row">
         <div className="col s12 center-align">
           <button
             className="btn-large"

@@ -20,7 +20,11 @@ export default function StepTitle({
         <>
           <Title>{title}</Title>
           <p className="center-align">
-            <i>LOADING... it could take some seconds</i>
+            <i>
+              LOADING...
+              <br />
+              it could take some seconds
+            </i>
           </p>
         </>
       )}
