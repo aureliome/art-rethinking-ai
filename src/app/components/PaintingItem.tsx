@@ -5,7 +5,7 @@ export default function PaintingItem({
   onSelectPainting,
 }: {
   painting: Painting;
-  onSelectPainting?: Function;
+  onSelectPainting?: (painting: Painting) => void;
 }) {
   return (
     <div

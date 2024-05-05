@@ -1,17 +1,20 @@
-import { useGetImageDescription } from "@/data/openai";
 import { useState } from "react";
+import { useGetImageDescription } from "@/data/openai";
 
-export default function TaskGetImageDescription({
+export default function Step3GetImageDescription({
   imageUrl,
   onSuccess,
 }: {
   imageUrl: string;
-  onSuccess: Function;
+  onSuccess: (imageDescription: string) => void;
 }) {
   const [imageDescription, setImageDescription] = useState<null | string>(null);
+  const [request, setRequest] = useState<null | string>(null);
+
   const { data, error, isLoading, mutate } = useGetImageDescription({
     imageUrl,
-    onSuccess: (imageDescription: string) => {
+    onSuccess: (request: string, imageDescription: string) => {
+      setRequest(request);
       setImageDescription(imageDescription);
       onSuccess(imageDescription);
     },
@@ -34,7 +37,19 @@ export default function TaskGetImageDescription({
         </div>
       )}
 
-      {data && imageDescription && <p>{imageDescription}</p>}
+      {data && request && imageDescription && (
+        <div>
+          <div>
+            <h3>REQUEST</h3>
+            <p>{request}</p>
+            <img src={imageUrl} width="100" />
+          </div>
+          <div>
+            <h3>RESPONSE</h3>
+            <p>{imageDescription}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

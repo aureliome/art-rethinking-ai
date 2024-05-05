@@ -41,8 +41,12 @@ export function useGetImageDescription({
   onSuccess,
 }: {
   imageUrl: string;
-  onSuccess: Function;
+  onSuccess: (request: string, imageDescription: string) => void;
 }) {
+  const requestMessages = [
+    "Provide a detailed description of this image listing all objects and colors included in the image.",
+    "Don't mention the artist and the name of the artwork. Don't use formatting (e.g. **Sky**) and new lines (/\n) in the response.",
+  ];
   const { data, error, isLoading, mutate } = useSWR(
     ["/chat/completions", imageUrl],
     ([url, imageUrl]: [string, string]) =>
@@ -52,14 +56,10 @@ export function useGetImageDescription({
           {
             role: "user",
             content: [
-              {
+              ...requestMessages.map((message) => ({
                 type: "text",
-                text: "Provide a detailed description of this image listing all objects and colors included in the image",
-              },
-              {
-                type: "text",
-                text: "Don't mention the artist and the name of the artwork. Don't use formatting (e.g. **Sky**) and new lines (\n) in the response.",
-              },
+                text: message,
+              })),
               {
                 type: "image_url",
                 image_url: {
@@ -76,7 +76,9 @@ export function useGetImageDescription({
     {
       ...swrOptions,
       onSuccess: (data, key, config) => {
-        onSuccess(data.choices[0].message.content);
+        const request = requestMessages.join("\n");
+        const imageDescription = data.choices[0].message.content;
+        onSuccess(request, imageDescription);
       },
     }
   );
@@ -99,7 +101,7 @@ export function useGenerateImage({
   styles: string[];
   media: string[];
   size: "SQUARE" | "HORIZONTAL" | "VERTICAL";
-  onSuccess: Function;
+  onSuccess: (request: string, newImageUrl: string) => void;
 }) {
   let prompt = `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS. `;
   if (genres.length || styles.length || media.length) {
@@ -129,7 +131,9 @@ export function useGenerateImage({
     {
       ...swrOptions,
       onSuccess: (data, key, config) => {
-        onSuccess(data.data[0].url);
+        const request = prompt;
+        const newImageUrl = data.data[0].url;
+        onSuccess(request, newImageUrl);
       },
     }
   );

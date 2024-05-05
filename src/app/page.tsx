@@ -1,67 +1,72 @@
 "use client";
 
 import { useState } from "react";
-import paintings from "@/data/paintings/paintings";
-import PaintingItem from "./components/PaintingItem";
 import TaskGetImageDescription from "./components/TaskGetImageDescription";
 import TaskGenerateImage from "./components/TaskGenerateImage";
+import Step1SelectPainting from "./components/steps/Step1SelectPainting";
+import Step2SelectParameters from "./components/steps/Step2SetParameters";
+import Step3GetImageDescription from "./components/steps/Step3GetImageDescription";
+import Step4GenerateImage from "./components/steps/Step4GenerateImage";
+import Step5ShowResult from "./components/steps/Step5ShowResult";
 
 export default function Home() {
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
   const [selectedPainting, setSelectedPaiting] = useState<null | Painting>(
     null
   );
-  const [imageDescription, setImageDescription] = useState<null | any>(null);
-  const [newImageUrl, setNewImageUrl] = useState<null | any>(null);
+  const [imageDescription, setImageDescription] = useState<null | string>(null);
+  const [newImageUrl, setNewImageUrl] = useState<null | string>(null);
 
-  function goToStep1(painting: Painting) {
+  function goToStep2(painting: Painting) {
     setSelectedPaiting(painting);
-    setStep(1);
-  }
-
-  function goToStep2(imageDescription: string) {
-    setImageDescription(imageDescription);
     setStep(2);
   }
 
-  function end(newImageUrl: string) {
-    setNewImageUrl(newImageUrl);
+  function goToStep3() {
     setStep(3);
+  }
+
+  function goToStep4(imageDescription: string) {
+    setImageDescription(imageDescription);
+    setStep(4);
+  }
+
+  function goToStep5(newImageUrl: string) {
+    setNewImageUrl(newImageUrl);
+    setStep(5);
+  }
+
+  function restart() {
+    setSelectedPaiting(null);
+    setImageDescription(null);
+    setNewImageUrl(null);
+    setStep(1);
   }
 
   return (
     <main>
       <h1>Art Rethinking AI</h1>
 
-      <h2>Step 1: select an artwork</h2>
-      <p>
-        Click on one of the following artwork you want to <i>rethink</i>
-      </p>
-
-      {selectedPainting ? (
-        <PaintingItem painting={selectedPainting} />
-      ) : (
-        paintings.map((painting) => (
-          <PaintingItem
-            key={painting.id}
-            painting={painting}
-            onSelectPainting={goToStep1}
-          />
-        ))
-      )}
-
-      {step > 0 && selectedPainting && (
-        <TaskGetImageDescription
+      {step === 1 && <Step1SelectPainting onSuccess={goToStep2} />}
+      {step === 2 && <Step2SelectParameters onSuccess={goToStep3} />}
+      {step >= 3 && selectedPainting && (
+        <Step3GetImageDescription
           imageUrl={selectedPainting.image}
-          onSuccess={goToStep2}
+          onSuccess={goToStep4}
         />
       )}
-
-      {step > 1 && selectedPainting && imageDescription && (
-        <TaskGenerateImage
-          originalImage={selectedPainting}
-          originalImageDescription={imageDescription}
-          onSuccess={end}
+      {step >= 4 && selectedPainting && imageDescription && (
+        <Step4GenerateImage
+          paiting={selectedPainting}
+          imageDescription={imageDescription}
+          onSuccess={goToStep5}
+        />
+      )}
+      {step === 5 && selectedPainting && newImageUrl && (
+        <Step5ShowResult
+          originalImageUrl={selectedPainting.image}
+          newImageUrl={newImageUrl}
+          onRetry={restart}
         />
       )}
     </main>
