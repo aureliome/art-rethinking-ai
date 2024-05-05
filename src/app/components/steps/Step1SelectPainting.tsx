@@ -1,4 +1,4 @@
-import paintings from "@/data/paintings/paintings";
+import paintings from "@/data/paitining.json";
 import PaintingItem from "@/app/components/PaintingItem";
 import Title from "@/app/components/atoms/Title";
 import style from "./Step1SelectPainting.module.css";
