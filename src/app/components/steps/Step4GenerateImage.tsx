@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGenerateImage } from "@/data/openai";
-import Title from "@/app/components/atoms/Title";
 import StepDetail from "../molecules/StepDetail";
+import StepTitle from "../molecules/StepTitle";
 
 export default function Step4GenerateImage({
   paiting,
@@ -38,20 +38,13 @@ export default function Step4GenerateImage({
 
   return (
     <div>
-      <Title>Generate a new image {isLoading && <span>LOADING...</span>}</Title>
-
-      {error && (
-        <div>
-          ERROR!{" "}
-          <button
-            onClick={() => {
-              mutate();
-            }}
-          >
-            RETRY
-          </button>
-        </div>
-      )}
+      <StepTitle
+        title="Generate a new image"
+        data={data}
+        error={error}
+        isLoading={isLoading}
+        onRetry={mutate}
+      />
 
       {data && newImageUrl && (
         <StepDetail

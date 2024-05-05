@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Art Rethinking AI</h1>
+      <h2>Art Rethinking AI</h2>
       <Introduction />
 
       {step === 1 && <Step1SelectPainting onSuccess={goToStep2} />}

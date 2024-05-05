@@ -33,6 +33,7 @@ const swrOptions = {
   revalidateOnReconnect: false,
   refreshWhenOffline: false,
   refreshWhenHidden: false,
+  shouldRetryOnError: false,
   refreshInterval: 0,
 };
 
