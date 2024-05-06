@@ -1,28 +1,77 @@
 import paintings from "@/data/paitining.json";
 import PaintingItem from "@/app/components/PaintingItem";
-import Title from "@/app/components/atoms/Title";
 import style from "./Step1SelectPainting.module.css";
+import Step from "../molecules/Step";
 
 export default function Step1SelectPainting({
+  selectedPaiting,
+  collapsed,
   onSuccess,
 }: {
+  selectedPaiting: Painting | null;
+  collapsed: boolean;
   onSuccess: (painting: Painting) => void;
 }) {
   return (
-    <div>
-      <Title>
-        Click on one of the following paintings you want to <i>rethink</i>
-      </Title>
+    <Step title="Choose the artwork" collapsed={collapsed}>
+      {selectedPaiting ? (
+        <div className="row">
+          <div className="col s12 m5">
+            <img
+              className="responsive-img"
+              src={selectedPaiting.image}
+              alt={selectedPaiting.title}
+            />
+          </div>
+          <div className="col s12 m7">
+            <p>
+              <strong>Title: </strong>
+              {selectedPaiting.title}
+            </p>
+            <p>
+              <strong>Artist: </strong>
+              {selectedPaiting.artistName}
+            </p>
 
-      <div className={style.masonry}>
-        {paintings.map((painting) => (
-          <PaintingItem
-            key={painting.id}
-            painting={painting}
-            onSelectPainting={onSuccess}
-          />
-        ))}
-      </div>
-    </div>
+            {selectedPaiting.genres.length > 0 && (
+              <p>
+                <strong>Genres: </strong>
+                {selectedPaiting.genres.length === 1
+                  ? selectedPaiting.genres.join(", ")
+                  : selectedPaiting.genres.join(", ").slice(0, -2)}
+              </p>
+            )}
+
+            {selectedPaiting.styles.length > 0 && (
+              <p>
+                <strong>Styles: </strong>
+                {selectedPaiting.styles.length === 1
+                  ? selectedPaiting.styles.join(", ")
+                  : selectedPaiting.styles.join(", ").slice(0, -2)}
+              </p>
+            )}
+
+            {selectedPaiting.media.length > 0 && (
+              <p>
+                <strong>Media: </strong>
+                {selectedPaiting.media.length === 1
+                  ? selectedPaiting.media.join(", ")
+                  : selectedPaiting.media.join(", ").slice(0, -2)}
+              </p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className={style.masonry}>
+          {paintings.map((painting) => (
+            <PaintingItem
+              key={painting.id}
+              painting={painting}
+              onSelectPainting={onSuccess}
+            />
+          ))}
+        </div>
+      )}
+    </Step>
   );
 }

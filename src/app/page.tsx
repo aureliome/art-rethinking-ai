@@ -47,20 +47,29 @@ export default function Home() {
       <h2>Art Rethinking AI</h2>
       <Introduction />
 
-      {step === 1 && <Step1SelectPainting onSuccess={goToStep2} />}
-      {step === 2 && selectedPainting && (
+      {step >= 1 && (
+        <Step1SelectPainting
+          selectedPaiting={selectedPainting}
+          collapsed={step > 1}
+          onSuccess={goToStep2}
+        />
+      )}
+
+      {step >= 2 && selectedPainting && (
         <Step2SelectParameters
-          painting={selectedPainting}
+          collapsed={step > 2}
           onSuccess={goToStep3}
           onGoBack={restart}
         />
       )}
+
       {step >= 3 && selectedPainting && (
         <Step3GetImageDescription
           imageUrl={selectedPainting.image}
           onSuccess={goToStep4}
         />
       )}
+
       {step >= 4 && selectedPainting && imageDescription && (
         <Step4GenerateImage
           paiting={selectedPainting}
@@ -68,6 +77,7 @@ export default function Home() {
           onSuccess={goToStep5}
         />
       )}
+
       {step === 5 && selectedPainting && newImageUrl && (
         <Step5ShowResult
           originalImageUrl={selectedPainting.image}
