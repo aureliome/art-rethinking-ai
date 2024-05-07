@@ -3,7 +3,7 @@
 **This project uses OpenAI APIs to recreate art masterpieces.**
 
 In particular:
-1. given the image of a famous painting (e.g. Mona List), OpenAI APIs return the detailed description of the artwork listing all objects and colors included in the image;
+1. given the image of a famous painting (e.g. Mona Lisa), OpenAI APIs return the detailed description of the artwork listing all objects and colors included in the image;
 2. this description is reused to ask OpenAI APIs to create a new paiting.
 
 <u>The interesting thing of this project is that the name of the masterpiece and its author are never mentioned.</u>

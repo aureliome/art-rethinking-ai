@@ -1,13 +1,15 @@
 export default function Introduction() {
   return (
     <div className="row">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, aliquam
-      voluptas molestiae laudantium labore corporis quam itaque omnis sequi fuga
-      nisi provident deleniti non in ad quo dolores, ratione natus? Quia
-      corrupti at fuga temporibus, expedita velit, laborum, laboriosam
-      repellendus minus tempora quaerat accusantium aliquam voluptatum amet nam.
-      Corporis cumque animi dignissimos alias, praesentium voluptates iste quo.
-      Optio, perspiciatis temporibus.
+      <b>This project uses OpenAI APIs to create art masterpieces.</b>
+      <br />
+      Given the image of a famous painting (e.g. Mona Lisa), OpenAI APIs return
+      the detailed description of the artwork listing all objects and colors
+      included in the image.
+      <br />
+      This description is reused to ask OpenAI APIs to create a new paitining.
+      <br />
+      <u>The title and the author of the masterpiece are never mentioned.</u>
     </div>
   );
 }
