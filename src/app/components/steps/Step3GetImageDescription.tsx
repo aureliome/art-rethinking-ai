@@ -3,14 +3,19 @@ import { useGetImageDescription } from "@/data/openai";
 import Step from "../molecules/Step";
 import StepAsyncContent from "../molecules/StepAsyncContent";
 import StepRequestResponse from "../molecules/StepRequestResponse";
+import { GetDescriptionImageDetail } from "../../../../types/openai";
 
 export default function Step3GetImageDescription({
-  imageUrl,
   collapsed,
+  imageUrl,
+  imageDetail,
+  maxTokens,
   onSuccess,
 }: {
-  imageUrl: string;
   collapsed: boolean;
+  imageUrl: string;
+  imageDetail: GetDescriptionImageDetail;
+  maxTokens: number;
   onSuccess: (imageDescription: string) => void;
 }) {
   const [imageDescription, setImageDescription] = useState<null | string>(null);
@@ -18,6 +23,8 @@ export default function Step3GetImageDescription({
 
   const { data, error, isLoading, mutate } = useGetImageDescription({
     imageUrl,
+    imageDetail,
+    maxTokens,
     onSuccess: (request: string, imageDescription: string) => {
       setRequest(request);
       setImageDescription(imageDescription);

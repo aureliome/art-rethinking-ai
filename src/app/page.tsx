@@ -77,6 +77,8 @@ export default function Home() {
         <Step3GetImageDescription
           collapsed={step > 3}
           imageUrl={selectedPainting.image}
+          imageDetail={openAiParameters.getDescriptionImageDetail}
+          maxTokens={openAiParameters.getDescriptionMaxTokens}
           onSuccess={goToStep4}
         />
       )}

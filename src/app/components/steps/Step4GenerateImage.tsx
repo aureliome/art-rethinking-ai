@@ -8,11 +8,15 @@ export default function Step4GenerateImage({
   collapsed,
   paiting,
   imageDescription,
+  imagePrefixAsIs,
+  imagePaintingDetails,
   onSuccess,
 }: {
   collapsed: boolean;
   paiting: Painting;
   imageDescription: string;
+  imagePrefixAsIs: boolean;
+  imagePaintingDetails: boolean;
   onSuccess: (newImageUrl: string) => void;
 }) {
   const [newImageUrl, setNewImageUrl] = useState<null | string>(null);
@@ -27,11 +31,13 @@ export default function Step4GenerateImage({
 
   const { data, error, isLoading, mutate } = useGenerateImage({
     imageUrl: paiting.image,
-    imageDescription: imageDescription,
+    imageDescription,
     genres: paiting.genres,
     styles: paiting.styles,
     media: paiting.media,
     size,
+    imagePrefixAsIs,
+    imagePaintingDetails,
     onSuccess: (request: string, newImageUrl: string) => {
       setRequest(request);
       setNewImageUrl(newImageUrl);

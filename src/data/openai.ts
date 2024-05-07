@@ -1,5 +1,9 @@
 import useSWR from "swr";
-import { OPENAI_MODEL, OPENAI_DALL_E_SIZES } from "../../types/openai";
+import {
+  OPENAI_MODEL,
+  OPENAI_DALL_E_SIZES,
+  GetDescriptionImageDetail,
+} from "../../types/openai";
 
 const ENDPOINT = "https://api.openai.com/v1";
 
@@ -27,9 +31,13 @@ const swrOptions = {
 
 export function useGetImageDescription({
   imageUrl,
+  imageDetail,
+  maxTokens,
   onSuccess,
 }: {
   imageUrl: string;
+  imageDetail: GetDescriptionImageDetail;
+  maxTokens: number;
   onSuccess: (request: string, imageDescription: string) => void;
 }) {
   const requestMessages = [
@@ -53,14 +61,13 @@ export function useGetImageDescription({
                 type: "image_url",
                 image_url: {
                   url: imageUrl,
-                  // TODO: make image detail customizable
-                  detail: "low",
+                  detail: imageDetail,
                 },
               },
             ],
           },
         ],
-        max_tokens: 300,
+        max_tokens: maxTokens,
       }),
     {
       ...swrOptions,
@@ -82,6 +89,8 @@ export function useGenerateImage({
   styles,
   media,
   size,
+  imagePrefixAsIs,
+  imagePaintingDetails,
   onSuccess,
 }: {
   imageUrl: string;
@@ -90,11 +99,19 @@ export function useGenerateImage({
   styles: string[];
   media: string[];
   size: "SQUARE" | "HORIZONTAL" | "VERTICAL";
+  imagePrefixAsIs: boolean;
+  imagePaintingDetails: boolean;
   onSuccess: (request: string, newImageUrl: string) => void;
 }) {
-  let prompt = `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS. `;
-  if (genres.length || styles.length || media.length) {
-    prompt += `Create a painting `;
+  let prompt = "";
+  if (imagePrefixAsIs) {
+    prompt += `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS. `;
+  }
+  prompt += `Create a painting `;
+  if (
+    imagePaintingDetails &&
+    (genres.length || styles.length || media.length)
+  ) {
     if (genres.length) {
       prompt += `of genres "${genres.join(",")}", `;
     }
@@ -104,9 +121,8 @@ export function useGenerateImage({
     if (media.length) {
       prompt += `on media "${media.join(",")}", `;
     }
-    prompt = prompt.slice(0, -2) + ". ";
   }
-  prompt += `Its description is: "${imageDescription}".`;
+  prompt += `using the following description: "${imageDescription}".`;
 
   const { data, error, isLoading, mutate } = useSWR(
     ["/images/generations", imageUrl],
