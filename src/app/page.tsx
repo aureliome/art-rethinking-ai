@@ -6,7 +6,7 @@ import Step2SelectParameters from "./components/steps/Step2SetParameters";
 import Step3GetImageDescription from "./components/steps/Step3GetImageDescription";
 import Step4GenerateImage from "./components/steps/Step4GenerateImage";
 import Step5ShowResult from "./components/steps/Step5ShowResult";
-import Introduction from "./components/Introduction";
+import Introduction from "./components/atoms/Introduction";
 
 export default function Home() {
   const [step, setStep] = useState<number>(1);
