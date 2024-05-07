@@ -28,7 +28,11 @@ export default function StepAsyncContent({
       {error && (
         <>
           <div className="center-align">
-            <i className="red-text">An error occured</i>
+            <i className="red-text">
+              An error occured
+              <br />
+              <span>{error?.message || ""}</span>
+            </i>
           </div>
           <div className="center-align">
             <button className="btn-small" onClick={onRetry}>
