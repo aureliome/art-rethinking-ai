@@ -1,7 +1,7 @@
 import paintings from "@/data/paitining.json";
-import PaintingItem from "@/app/components/PaintingItem";
-import style from "./Step1SelectPainting.module.css";
+import PaintingItem from "@/app/components/molecules/PaintingItem";
 import Step from "../molecules/Step";
+import PaintingsList from "../molecules/PaintingsList";
 
 export default function Step1SelectPainting({
   selectedPaiting,
@@ -62,15 +62,7 @@ export default function Step1SelectPainting({
           </div>
         </div>
       ) : (
-        <div className={style.masonry}>
-          {paintings.map((painting) => (
-            <PaintingItem
-              key={painting.id}
-              painting={painting}
-              onSelectPainting={onSuccess}
-            />
-          ))}
-        </div>
+        <PaintingsList paintings={paintings} onSelectPainting={onSuccess} />
       )}
     </Step>
   );

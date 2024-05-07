@@ -1,5 +1,3 @@
-import style from "./PaintingItem.module.css";
-
 export default function PaintingItem({
   painting,
   onSelectPainting,
