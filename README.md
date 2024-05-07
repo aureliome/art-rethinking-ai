@@ -106,6 +106,5 @@ The technologies used in this projects:
 
 ### TODO
 
-- Paramenters managements;
-- add the possibility to search a painting (e.g. using [WikiArt APIs](https://www.wikiart.org/en/App/GetApi));
+- Add the possibility to search a painting (e.g. using [WikiArt APIs](https://www.wikiart.org/en/App/GetApi));
 - improve the UI components (migrate to Bulma?).
