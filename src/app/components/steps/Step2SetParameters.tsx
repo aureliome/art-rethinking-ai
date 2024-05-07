@@ -11,28 +11,31 @@ export default function Step2SelectParameters({
 }) {
   return (
     <Step title="Set the parameters" collapsed={collapsed}>
-      <div className="row">
-        <div className="col s6 right-align">
-          <button
-            className="btn-large black-text white"
-            onClick={() => {
-              onGoBack();
-            }}
-          >
-            GO BACK
-          </button>
+      {/* TODO: add parameters */}
+      {!collapsed && (
+        <div className="row">
+          <div className="col s6 right-align">
+            <button
+              className="btn-large black-text white"
+              onClick={() => {
+                onGoBack();
+              }}
+            >
+              GO BACK
+            </button>
+          </div>
+          <div className="col s6 left-align">
+            <button
+              className="btn-large"
+              onClick={() => {
+                onSuccess();
+              }}
+            >
+              START
+            </button>
+          </div>
         </div>
-        <div className="col s6 left-align">
-          <button
-            className="btn-large"
-            onClick={() => {
-              onSuccess();
-            }}
-          >
-            START
-          </button>
-        </div>
-      </div>
+      )}
     </Step>
   );
 }
