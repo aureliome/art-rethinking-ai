@@ -91,3 +91,21 @@ npm run dev
 ```
 
 And test it on http://localhost:3000.
+
+## Contribute
+
+To contribute to this project, you can follow the instructions reported in [Usage](#usage) above.
+
+The technologies used in this projects:
+- [OpenAI APIs](https://platform.openai.com/docs/overview);
+- [React](https://react.dev/);
+- [Next.js by Vercel](https://nextjs.org/);
+- [SWR](https://swr.vercel.app/);
+- [Materialize CSS](https://materializecss.com/);
+- [WikiArt](https://www.wikiart.org/) for paitining images and data;
+
+### TODO
+
+- Paramenters managements;
+- add the possibility to search a painting (e.g. using [WikiArt APIs](https://www.wikiart.org/en/App/GetApi));
+- improve the UI components (migrate to Bulma?).
