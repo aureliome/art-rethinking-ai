@@ -1,18 +1,7 @@
 import useSWR from "swr";
+import { OPENAI_MODEL, OPENAI_DALL_E_SIZES } from "../../types/openai";
 
 const ENDPOINT = "https://api.openai.com/v1";
-
-export enum OPENAI_MODEL {
-  GPT_4_TURBO = "gpt-4-turbo",
-  DALL_E_2 = "dall-e-2",
-  DALL_E_3 = "dall-e-3",
-}
-
-enum OPENAI_DALL_E_SIZES {
-  "SQUARE" = "1024x1024",
-  "VERTICAL" = "1024x1792",
-  "HORIZONTAL" = "1792x1024",
-}
 
 const headers = {
   Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
@@ -29,7 +18,6 @@ const openaiFetcher = (url: string, body: Record<string, unknown>) =>
 
 const swrOptions = {
   revalidateOnFocus: false,
-  // revalidateOnMount: false,
   revalidateOnReconnect: false,
   refreshWhenOffline: false,
   refreshWhenHidden: false,

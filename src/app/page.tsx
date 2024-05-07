@@ -7,6 +7,7 @@ import Step3GetImageDescription from "./components/steps/Step3GetImageDescriptio
 import Step4GenerateImage from "./components/steps/Step4GenerateImage";
 import Step5ShowResult from "./components/steps/Step5ShowResult";
 import Introduction from "./components/atoms/Introduction";
+import { OpenAiParameters } from "../../types/openai";
 
 export default function Home() {
   const [step, setStep] = useState<number>(1);
@@ -15,6 +16,12 @@ export default function Home() {
   );
   const [imageDescription, setImageDescription] = useState<null | string>(null);
   const [newImageUrl, setNewImageUrl] = useState<null | string>(null);
+  const [openAiParameters, setOpenAiParameters] = useState<OpenAiParameters>({
+    getDescriptionImageDetail: "low",
+    getDescriptionMaxTokens: 300,
+    generateImagePrefixAsIs: true,
+    generateImagePaintingDetails: false,
+  });
 
   function goToStep2(painting: Painting) {
     setSelectedPaiting(painting);
@@ -47,6 +54,8 @@ export default function Home() {
       <h2>Art Rethinking AI</h2>
       <Introduction />
 
+      <div>{JSON.stringify(openAiParameters)}</div>
+
       {step >= 1 && (
         <Step1SelectPainting
           selectedPaiting={selectedPainting}
@@ -58,6 +67,8 @@ export default function Home() {
       {step >= 2 && selectedPainting && (
         <Step2SelectParameters
           collapsed={step > 2}
+          parameters={openAiParameters}
+          onSetParameters={setOpenAiParameters}
           onSuccess={goToStep3}
           onGoBack={restart}
         />
