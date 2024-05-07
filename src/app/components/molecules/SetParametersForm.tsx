@@ -6,9 +6,11 @@ import {
 import style from "./SetParametersForm.module.css";
 
 export default function SetParametersForm({
+  editable,
   parameters,
   onSetParameters,
 }: {
+  editable: boolean;
   parameters: OpenAiParameters;
   onSetParameters: (parameters: OpenAiParameters) => void;
 }) {
@@ -55,7 +57,7 @@ export default function SetParametersForm({
 
       <h6>Get description of the artwork</h6>
       <div className="row">
-        <p className="col s12 m6">
+        <div className="col s12 m6">
           <label htmlFor="getDescriptionImageDetail">
             <a
               target="_blank"
@@ -65,34 +67,48 @@ export default function SetParametersForm({
             </a>
             . High value consumes more tokens
           </label>
-          <select
-            className="browser-default"
-            name="getDescriptionImageDetail"
-            value={parameters.getDescriptionImageDetail}
-            onChange={handleGetDescriptionImageDetail}
-          >
-            <option value="low">low</option>
-            <option value="high">high</option>
-            <option value="auto">auto</option>
-          </select>
-        </p>
+          {editable ? (
+            <select
+              className="browser-default"
+              name="getDescriptionImageDetail"
+              value={parameters.getDescriptionImageDetail}
+              onChange={handleGetDescriptionImageDetail}
+            >
+              <option value="low">low</option>
+              <option value="high">high</option>
+              <option value="auto">auto</option>
+            </select>
+          ) : (
+            <p>
+              <strong>
+                {parameters.getDescriptionImageDetail.toUpperCase()}
+              </strong>
+            </p>
+          )}
+        </div>
 
-        <p className="col s12 m6">
+        <div className="col s12 m6">
           <label htmlFor="getDescriptionMaxTokens">
             Max tokens used for the description
           </label>
-          <input
-            type="number"
-            name="getDescriptionMaxTokens"
-            value={parameters.getDescriptionMaxTokens}
-            onChange={handleGetDescriptionMaxTokens}
-          />
-        </p>
+          {editable ? (
+            <input
+              type="number"
+              name="getDescriptionMaxTokens"
+              value={parameters.getDescriptionMaxTokens}
+              onChange={handleGetDescriptionMaxTokens}
+            />
+          ) : (
+            <p>
+              <strong>{parameters.getDescriptionMaxTokens}</strong>
+            </p>
+          )}
+        </div>
       </div>
 
       <h6>Generate a new image</h6>
       <div className="row">
-        <p className="col s12 m6">
+        <div className="col s12 m6">
           <label htmlFor="generateImagePrefixAsIs">
             (Recommened) Add the prefix{" "}
             <i>
@@ -108,22 +124,30 @@ export default function SetParametersForm({
               It is useful to get new image closer to the original description.
             </a>
           </label>
-          <div className="switch">
-            <label>
-              Off
-              <input
-                type="checkbox"
-                name="generateImagePrefixAsIs"
-                checked={parameters.generateImagePrefixAsIs}
-                onChange={handleGenerateImagePrefixAsIs}
-              />
-              <span className="lever"></span>
-              On
-            </label>
-          </div>
-        </p>
+          {editable ? (
+            <div className="switch">
+              <label>
+                Off
+                <input
+                  type="checkbox"
+                  name="generateImagePrefixAsIs"
+                  checked={parameters.generateImagePrefixAsIs}
+                  onChange={handleGenerateImagePrefixAsIs}
+                />
+                <span className="lever"></span>
+                On
+              </label>
+            </div>
+          ) : (
+            <p>
+              <strong>
+                {parameters.generateImagePrefixAsIs ? "ENABLED" : "DISABLED"}
+              </strong>
+            </p>
+          )}
+        </div>
 
-        <p className="col s12 m6">
+        <div className="col s12 m6">
           <label htmlFor="generateImagePaintingDetails">
             Add painting data (genre, styles and media) to the prompt used to
             generate the new image. Enabling it allows to have an image closer
@@ -134,20 +158,30 @@ export default function SetParametersForm({
               case.
             </u>
           </label>
-          <div className="switch">
-            <label>
-              Off
-              <input
-                type="checkbox"
-                name="generateImagePaintingDetails"
-                checked={parameters.generateImagePaintingDetails}
-                onChange={handleGenerateImagePaintingDetails}
-              />
-              <span className="lever"></span>
-              On
-            </label>
-          </div>
-        </p>
+          {editable ? (
+            <div className="switch">
+              <label>
+                Off
+                <input
+                  type="checkbox"
+                  name="generateImagePaintingDetails"
+                  checked={parameters.generateImagePaintingDetails}
+                  onChange={handleGenerateImagePaintingDetails}
+                />
+                <span className="lever"></span>
+                On
+              </label>
+            </div>
+          ) : (
+            <p>
+              <strong>
+                {parameters.generateImagePaintingDetails
+                  ? "ENABLED"
+                  : "DISABLED"}
+              </strong>
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

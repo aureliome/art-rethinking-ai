@@ -54,8 +54,6 @@ export default function Home() {
       <h2>Art Rethinking AI</h2>
       <Introduction />
 
-      <div>{JSON.stringify(openAiParameters)}</div>
-
       {step >= 1 && (
         <Step1SelectPainting
           selectedPaiting={selectedPainting}
@@ -66,6 +64,7 @@ export default function Home() {
 
       {step >= 2 && selectedPainting && (
         <Step2SelectParameters
+          editable={step == 2}
           collapsed={step > 2}
           parameters={openAiParameters}
           onSetParameters={setOpenAiParameters}

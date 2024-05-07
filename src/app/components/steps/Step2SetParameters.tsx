@@ -7,12 +7,14 @@ import Step from "../molecules/Step";
 import SetParametersForm from "../molecules/SetParametersForm";
 
 export default function Step2SelectParameters({
+  editable,
   collapsed,
   parameters,
   onSetParameters,
   onSuccess,
   onGoBack,
 }: {
+  editable: boolean;
   collapsed: boolean;
   parameters: OpenAiParameters;
   onSetParameters: (parameters: OpenAiParameters) => void;
@@ -22,6 +24,7 @@ export default function Step2SelectParameters({
   return (
     <Step title="Set the parameters" collapsed={collapsed}>
       <SetParametersForm
+        editable={editable}
         parameters={parameters}
         onSetParameters={onSetParameters}
       />
