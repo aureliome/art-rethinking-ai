@@ -65,6 +65,7 @@ export default function Home() {
 
       {step >= 3 && selectedPainting && (
         <Step3GetImageDescription
+          collapsed={step > 3}
           imageUrl={selectedPainting.image}
           onSuccess={goToStep4}
         />

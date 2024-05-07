@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useGetImageDescription } from "@/data/openai";
-import StepDetail from "../molecules/StepDetail";
-import StepTitle from "../molecules/StepTitle";
+import Step from "../molecules/Step";
+import StepAsyncContent from "../molecules/StepAsyncContent";
+import StepRequestResponse from "../molecules/StepRequestResponse";
 
 export default function Step3GetImageDescription({
   imageUrl,
+  collapsed,
   onSuccess,
 }: {
   imageUrl: string;
+  collapsed: boolean;
   onSuccess: (imageDescription: string) => void;
 }) {
   const [imageDescription, setImageDescription] = useState<null | string>(null);
@@ -23,17 +26,14 @@ export default function Step3GetImageDescription({
   });
 
   return (
-    <div>
-      <StepTitle
-        title="Get description of the original image"
+    <Step title="Get description of the artwork" collapsed={collapsed}>
+      <StepAsyncContent
         data={data}
         error={error}
         isLoading={isLoading}
         onRetry={mutate}
-      />
-
-      {data && request && imageDescription && (
-        <StepDetail
+      >
+        <StepRequestResponse
           request={
             <div>
               <p>{request}</p>
@@ -42,7 +42,7 @@ export default function Step3GetImageDescription({
           }
           response={<p>{imageDescription}</p>}
         />
-      )}
-    </div>
+      </StepAsyncContent>
+    </Step>
   );
 }
