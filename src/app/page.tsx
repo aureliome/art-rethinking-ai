@@ -73,6 +73,7 @@ export default function Home() {
 
       {step >= 4 && selectedPainting && imageDescription && (
         <Step4GenerateImage
+          collapsed={step > 4}
           paiting={selectedPainting}
           imageDescription={imageDescription}
           onSuccess={goToStep5}

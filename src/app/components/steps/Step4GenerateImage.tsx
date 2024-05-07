@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useGenerateImage } from "@/data/openai";
-import StepDetail from "../molecules/StepDetail";
-import StepTitle from "../molecules/StepTitle";
+import StepAsyncContent from "../molecules/StepAsyncContent";
+import Step from "../molecules/Step";
+import StepRequestResponse from "../molecules/StepRequestResponse";
 
 export default function Step4GenerateImage({
+  collapsed,
   paiting,
   imageDescription,
   onSuccess,
 }: {
+  collapsed: boolean;
   paiting: Painting;
   imageDescription: string;
   onSuccess: (newImageUrl: string) => void;
@@ -37,21 +40,20 @@ export default function Step4GenerateImage({
   });
 
   return (
-    <div>
-      <StepTitle
-        title="Generate a new image"
+    <Step title="Generate a new image" collapsed={collapsed}>
+      <StepAsyncContent
         data={data}
         error={error}
         isLoading={isLoading}
         onRetry={mutate}
-      />
-
-      {data && newImageUrl && (
-        <StepDetail
+      >
+        <StepRequestResponse
           request={<p>{request}</p>}
-          response={<img className="responsive-img" src={newImageUrl} />}
+          response={
+            newImageUrl && <img className="responsive-img" src={newImageUrl} />
+          }
         />
-      )}
-    </div>
+      </StepAsyncContent>
+    </Step>
   );
 }
