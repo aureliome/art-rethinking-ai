@@ -1,4 +1,5 @@
 import Title from "../atoms/Title";
+import Step from "../molecules/Step";
 
 export default function Step5ShowResult({
   originalImageUrl,
@@ -10,29 +11,31 @@ export default function Step5ShowResult({
   onRetry: () => void;
 }) {
   return (
-    <div>
-      <div className="row">
-        <div className="col s12 m6 center-align">
-          <Title>Original Image</Title>
-          <img className="responsive-img" src={originalImageUrl} />
+    <Step title="Final Result" collapsed={false}>
+      <div>
+        <div className="row">
+          <div className="col s12 m6">
+            <h6>ORIGINAL IMAGE</h6>
+            <img className="responsive-img" src={originalImageUrl} />
+          </div>
+          <div className="col s12 m6">
+            <h6>NEW IMAGE</h6>
+            <img className="responsive-img" src={newImageUrl} />
+          </div>
         </div>
-        <div className="col s12 m6 center-align">
-          <Title>New Image</Title>
-          <img className="responsive-img" src={newImageUrl} />
+        <div className="row">
+          <div className="col s12 center-align">
+            <button
+              className="btn-large"
+              onClick={() => {
+                onRetry();
+              }}
+            >
+              CREATE A NEW IMAGE
+            </button>
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col s12 center-align">
-          <button
-            className="btn-large"
-            onClick={() => {
-              onRetry();
-            }}
-          >
-            CREATE A NEW IMAGE
-          </button>
-        </div>
-      </div>
-    </div>
+    </Step>
   );
 }
