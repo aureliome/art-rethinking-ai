@@ -2,8 +2,12 @@ export default function Introduction() {
   return (
     <div className="row">
       <b>
-        This project utilizes OpenAI&apos;s APIs to create unique pieces of art.
+        This project utilizes OpenAI&apos;s APIs to recreate famous paintings
+        through an <i>image-to-text-to-image</i> process.
       </b>
+      <br />
+      The goal is to evaluate how well AI can analyze and recreate paintings
+      without explicitly naming the original title or artist.
       <br />
       By providing an image of a famous painting (e.g., the Mona Lisa),
       OpenAI&apos;s APIs generate a detailed description of the artwork,
@@ -16,9 +20,6 @@ export default function Introduction() {
         The title and artist of the original masterpiece are intentionally
         omitted.
       </u>
-      <br />
-      This experiment aims to evaluate the AI&apos;s ability to analyze and
-      recreate an image (<i>image-to-text-to-image</i>).
     </div>
   );
 }
