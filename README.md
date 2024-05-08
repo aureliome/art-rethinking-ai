@@ -1,16 +1,18 @@
 # art-rethinking-ai
 
-**This project uses OpenAI APIs to recreate art masterpieces.**
+**This project utilizes OpenAI's APIs to create unique pieces of art.**
 
-In particular:
-1. given the image of a famous painting (e.g. Mona Lisa), OpenAI APIs return the detailed description of the artwork listing all objects and colors included in the image;
-2. this description is reused to ask OpenAI APIs to create a new paiting.
+By providing an image of a famous painting (e.g., the Mona Lisa), OpenAI's APIs generate a detailed description of the artwork, including the objects and colors depicted.
 
-<u>The interesting thing of this project is that the name of the masterpiece and its author are never mentioned.</u>
+Using this description, the project then prompts the OpenAI APIs to produce a new, original painting.
+
+<u>The title and artist of the original masterpiece are intentionally omitted.</u>
+
+This experiment aims to evaluate the AI's ability to analyze and recreate  an image (`image-to-text-to-image`).
 
 ## Examples
 
-They are some examples of artworks that we have created with this project:
+These are some examples of artworks we have created with this project:
 
 <table>
   <tr>
@@ -66,8 +68,8 @@ You can try this project locally.
 ### Requirements
 
 - Node >= 18: you can download it [here](https://nodejs.org/) or using a [Node Version Manager](https://github.com/nvm-sh/nvm);
-- an OpenAI account: you can create it [here](https://platform.openai.com/signup);
-- at least 5$ in your OpenAI account: you can charge it [here](https://platform.openai.com/settings/organization/billing/overview);
+- an OpenAI's account: you can create it [here](https://platform.openai.com/signup);
+- at least 5$ in your OpenAI's wallet: you can charge it [here](https://platform.openai.com/settings/organization/billing/overview);
 - an OpenAI API key: you can create it [here](https://platform.openai.com/api-keys);
 
 ### Get started

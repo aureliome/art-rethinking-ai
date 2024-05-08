@@ -33,7 +33,7 @@ export default function Step3GetImageDescription({
   });
 
   return (
-    <Step title="Get description of the artwork" collapsed={collapsed}>
+    <Step title="Get a description of the artwork" collapsed={collapsed}>
       <StepAsyncContent
         data={data}
         error={error}
@@ -44,7 +44,11 @@ export default function Step3GetImageDescription({
           request={
             <div>
               <p>{request}</p>
-              <img className="responsive-img" src={imageUrl} />
+              <img
+                className="responsive-img"
+                src={imageUrl}
+                alt="Original painting"
+              />
             </div>
           }
           response={<p>{imageDescription}</p>}

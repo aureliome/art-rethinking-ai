@@ -55,7 +55,7 @@ export default function SetParametersForm({
     <div className={style.form}>
       <p>They are the parameters will be used for OpenAI APIs.</p>
 
-      <h6>Get description of the artwork</h6>
+      <h6>Get a description of the artwork</h6>
       <div className="row">
         <div className="col s12 m6">
           <label htmlFor="getDescriptionImageDetail">
@@ -63,9 +63,9 @@ export default function SetParametersForm({
               target="_blank"
               href="https://platform.openai.com/docs/guides/vision/low-or-high-fidelity-image-understanding"
             >
-              Understanding fidelity image level
+              Image understanding fidelity level
             </a>
-            . High value consumes more tokens
+            . Higher values consume more tokens
           </label>
           {editable ? (
             <select
@@ -89,7 +89,7 @@ export default function SetParametersForm({
 
         <div className="col s12 m6">
           <label htmlFor="getDescriptionMaxTokens">
-            Max tokens used for the description
+            Maximum tokens used for the description
           </label>
           {editable ? (
             <input
@@ -110,7 +110,7 @@ export default function SetParametersForm({
       <div className="row">
         <div className="col s12 m6">
           <label htmlFor="generateImagePrefixAsIs">
-            (Recommened) Add the prefix{" "}
+            (Recommended) Add the prefix{" "}
             <i>
               &quot;I NEED to test how the tool works with extremely simple
               prompts. DO NOT add any detail, just use it AS-IS.&quot;
@@ -121,7 +121,8 @@ export default function SetParametersForm({
               target="_blank"
               href="https://platform.openai.com/docs/guides/images/prompting"
             >
-              It is useful to get new image closer to the original description.
+              This helps generate a new image that closely matches the original
+              description.
             </a>
           </label>
           {editable ? (
@@ -149,13 +150,13 @@ export default function SetParametersForm({
 
         <div className="col s12 m6">
           <label htmlFor="generateImagePaintingDetails">
-            Add painting data (genre, styles and media) to the prompt used to
-            generate the new image. Enabling it allows to have an image closer
-            to the original.
+            Add painting data (genre, style, and medium) to the prompt used to
+            create the new image. Enabling this option results in an image
+            closer to the original.
             <br />
             <u>
-              Title and artist name of the artwork will be not mentioned in any
-              case.
+              However, the title and artist of the artwork will not be
+              mentioned.
             </u>
           </label>
           {editable ? (

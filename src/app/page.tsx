@@ -88,6 +88,8 @@ export default function Home() {
           collapsed={step > 4}
           paiting={selectedPainting}
           imageDescription={imageDescription}
+          imagePrefixAsIs={openAiParameters.generateImagePrefixAsIs}
+          imagePaintingDetails={openAiParameters.generateImagePaintingDetails}
           onSuccess={goToStep5}
         />
       )}
