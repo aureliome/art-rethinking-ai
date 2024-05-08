@@ -2,7 +2,7 @@ export default function Introduction() {
   return (
     <div className="row">
       <b>
-        This project utilizes OpenAI&apos;s APIs to recreate famous paintings
+        This project uses OpenAI&apos;s APIs to recreate famous paintings
         through an <i>image-to-text-to-image</i> process.
       </b>
       <br />

@@ -1,6 +1,6 @@
 # art-rethinking-ai
 
-**This project utilizes OpenAI's APIs to recreate famous paintings through an `image-to-text-to-image` process.**
+**This project uses OpenAI's APIs to recreate famous paintings through an `image-to-text-to-image` process.**
 
 The goal is to evaluate how well AI can analyze and recreate paintings without explicitly naming the original title or artist.
 
